@@ -5,21 +5,23 @@ class Records:
         self.id_micro = id_micro
         self.id_family = id_family
         records = {"id_micro":self.id_micro,"id_family":id_family}
-        df_records = pd.DataFrame(records)
+        self.df_records = pd.DataFrame(columns=["id_micro", "id_family", "cns"])
     
     def add_patient(self,id_micro,id_family,cns):
         if len(cns) != 15:
             print("CNS inválido!")
-        if cns in self.records:
+        if cns in self.df_records['cns'].values:
             print(f"Paciente {cns} já está anexado ao prontuário.")
         else : 
-            self.records[,cns]={"id_micro":id_micro,"id_family":id_family}
+            new_record = {"id_micro":id_micro,"id_family":id_family, "cns":cns}
+            self.df_records= pd.concat([self.df_records,pd.DataFrame([new_record])],ignore_index=True)
             print (f"Paciente {cns} inserido ao prontuário {id_micro}.{id_family}.")
     def del_patient(self,id_micro,id_family,cns):
-        if cns in self.records:
-            del self.records[cns]
+        if cns in self.df_records['cns'].values:
+            self.df_records = self.df_records[self.df_records['cns'].values != cns]
             print(f"Paciente {cns} retirado do prontuário {id_micro}:{id_family}")
         else:
             print(f"Paciente {cns} não faz parte do prontuário.")
     def status (self,id_micro,id_family):
-        pass
+        print("Status dos registros:")
+        print(self.df_records)
