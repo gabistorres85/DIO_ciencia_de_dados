@@ -59,18 +59,16 @@ This graphic was plotted using `plotly.graph_objects`.
 
 # Predictive Statistics
 
-Firts is necessary know the trend, rationality and noise, for this used the statsmodels.tsa.seasonal library.
-Then, I create a new serie with date like index.
-Aplied method seasonal_decompose and creat a graphic with MatPlotlib with three lines (Observed, Trend and Seasonal).
+First, it is necessary to identify the **trend**, **seasonality**, and **noise** in the data. For this, I used the `statsmodels.tsa.seasonal` library.  
+Next, I created a new series with the date as the index.  
+I applied the `seasonal_decompose` method and created a graph using Matplotlib, displaying three components: **Observed**, **Trend**, and **Seasonal**.
 
+---
 
 # Prophet Library
 
-I tried install with the instruction from the course, but doesn't work, because a conflit of version Python. So, I asked hetp to chatGPT.  
-I solved the problem making a new ambiente Conda with Python 3.8
+I initially tried to install Prophet following the course instructions, but it didn't work due to a Python version conflict. So, I asked ChatGPT for help.  
+I solved the issue by creating a new Conda environment with Python 3.8:
 
->conda create -n fbprophet_env python=3.8 -y
-
-Actived the venv, but still hand't worked. 
-
-So i tried another ways, like changing the backend of Prophet, unfortanetly i couldn't solve the problem on this way. 
+```bash
+conda create -n fbprophet_env python=3.8 -y
